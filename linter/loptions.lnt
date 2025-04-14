@@ -1,0 +1,52 @@
+-wlib(1) // Only report errors from the libraries
+//// Output: One line, file info always, use full path names
+-hF1
+//+ffn
+//-"format=[%t] \q%f:%l:%c\q %n: %m"
+//// Do not break lines
+//-width(0,0)
+//// And make sure no foreign includes change the format
+//// or the output option
+//+flm
+//// Warn when trigraphs are used
+//-ftg
+//// Include files within library includes without full path
++fdi
+//// Don't stop make because of warnings
+//-zero(99)
+//// Make sure to make two passes (for better error messages)
+////-passes(2)
+//// Include directory where other option files *.lnt are located
+//-i/opt/pclp/lnt
+//// Don't let -e<nnnn> options bleed to other source files
+//-restore_at_end
+//// Produce a summary of all produced messages
+-summary()
+//
+//
+//// library errors to exclude
+//// 40: "/usr/include/stdlib.h" 566 5 error 40: undeclared identifier '__builtin_free'
+//// 4231: "/usr/include/stdlib.h" 570 14 error 4231: '__malloc__' attribute takes no arguments
+-elib(40)
+-elib(143)
+-elib(759)
+-elib(793)
+-elib(893)
+-elib(891)
+-elib(897)
+-elib(1024)
+-elib(4231)
+-elib(4964)
+-elib(5339)
+-elib(6071)
+-e893
+-e537
+-elib(9259)
+-elib(970)
+// we use __FUNC__ for our debug and assert helper
+-e9071
+-e9015
+// skip info messages
+-w2
+
+
