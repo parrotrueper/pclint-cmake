@@ -1,0 +1,70 @@
+/tmp/workspace/your-app/application.c:2: warning: the name 'Main.c' supplied as the argument in the \file statement is not an input file
+/tmp/workspace/your-app/application.h:2: warning: the name 'Main.h' supplied as the argument in the \file statement is not an input file
+/tmp/workspace/tests/test_application.cpp:2: warning: the name 'test_Main.cpp' supplied as the argument in the \file statement is not an input file
+/tmp/workspace/tests/test_hello_world.cpp:2: warning: the name 'test_HelloWorld.cpp' supplied as the argument in the \file statement is not an input file
+/tmp/workspace/tests/test_hello_world.cpp:16: warning: Compound HelloWorld_test is not documented.
+/tmp/workspace/tests/test_cCounter.cpp:11: warning: Compound cCounter_test is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:11: warning: Compound cCounter_test2 is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:16: warning: Compound cEvaluate_test is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:29: warning: Compound st_drvgpio_instance_t is not documented.
+/tmp/workspace/tests/test_application.cpp:9: warning: Compound test_Main is not documented.
+/tmp/workspace/tests/test_util_Crc32.cpp:14: warning: Compound util_Crc32_test is not documented.
+error: style sheet doxygen-awesome-css/doxygen-awesome.css does not exist or is not readable!/tmp/workspace/hardware-drivers/drv_Gpio.h:18: warning: Member drvgpio_port_t (typedef) of file drv_Gpio.h is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:19: warning: Member drvgpio_pin_t (typedef) of file drv_Gpio.h is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:21: warning: Member e_drvgpio_state_t (enumeration) of file drv_Gpio.h is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:28: warning: Member TEST_F(cCounter_test2, CounterSetUp) (function) of file test_2_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:32: warning: Member TEST_F(cCounter_test2, Count23) (function) of file test_2_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:39: warning: Member TEST_F(cCounter_test2, Count4) (function) of file test_2_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_cCounter.cpp:27: warning: Member TEST_F(cCounter_test, CounterSetUp) (function) of file test_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_cCounter.cpp:31: warning: Member TEST_F(cCounter_test, Count123) (function) of file test_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_cCounter.cpp:39: warning: Member TEST_F(cCounter_test, Count1) (function) of file test_cCounter.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:23: warning: Member TEST_F(cEvaluate_test, PlatformSizeOfFloat) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:27: warning: Member TEST_F(cEvaluate_test, PlatformSizeOfDouble) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:31: warning: Member TEST_F(cEvaluate_test, PlatformSizeOfLongDouble) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:37: warning: Member TEST_F(cEvaluate_test, DoTheseBitsMatch) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:49: warning: Member TEST_F(cEvaluate_test, GetPi32bit) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:56: warning: Member TEST_F(cEvaluate_test, GetPi64bit) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:64: warning: Member TEST_F(cEvaluate_test, Pi32bitErrorTolerancePass) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:71: warning: Member TEST_F(cEvaluate_test, Pi64bitErrorTolerancePass) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:80: warning: Member TEST_F(cEvaluate_test, DISABLED_Pi32bitErrorToleranceFail) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:87: warning: Member TEST_F(cEvaluate_test, Pi64bitErrorToleranceFail) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:97: warning: Member TEST_F(cEvaluate_test, SegmentationFault) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:105: warning: Member TEST_F(cEvaluate_test, CoreDump) (function) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:14: warning: Member bDebugEn (variable) of file test_cEvaluate.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:14: warning: Member POWER_LED_PIN (macro definition) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:15: warning: Member POWER_LED_PORT (macro definition) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:61: warning: Member HAL_GPIO_TogglePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:65: warning: Member HAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:69: warning: Member HAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:75: warning: Member TEST_F(GpioUnitTest, InitialiseHi) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:89: warning: Member TEST_F(GpioUnitTest, InitialiseLo) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:103: warning: Member TEST_F(GpioUnitTest, WritePin) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:118: warning: Member TEST_F(GpioUnitTest, ReadPin) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:135: warning: Member TEST_F(GpioUnitTest, TogglePin) (function) of file test_drv_Gpio.cpp is not documented.
+/tmp/workspace/tests/test_util_Crc32.cpp:21: warning: Member TEST_F(util_Crc32_test, Calc) (function) of file test_util_Crc32.cpp is not documented.
+/tmp/workspace/tests/test_util_DateTime.cpp:15: warning: Member TEST_P(LeapYearParamTestFixture, VerifyLeapYears) (function) of file test_util_DateTime.cpp is not documented.
+/tmp/workspace/tests/test_util_DateTime.cpp:22: warning: Member INSTANTIATE_TEST_SUITE_P(LeapYearTests, LeapYearParamTestFixture, ::testing::Values(std::make_tuple(1881, false), std::make_tuple(500, false), std::make_tuple(711, false), std::make_tuple(1910, false), std::make_tuple(1966, false), std::make_tuple(1989, false), std::make_tuple(2023, false), std::make_tuple(1804, true), std::make_tuple(1920, true), std::make_tuple(1968, true), std::make_tuple(1976, true), std::make_tuple(2032, true))) (function) of file test_util_DateTime.cpp is not documented.
+/tmp/workspace/your-app/hello_world.h:23: warning: argument 'i_pDestination' from the argument list of hello_world_api has multiple @param documentation sections
+/tmp/workspace/your-app/hello_world.h:23: warning: argument 'i_u32Length' from the argument list of hello_world_api has multiple @param documentation sections
+/tmp/workspace/tests/test_cCounter.cpp:14: warning: Member SetUp() override (function) of struct cCounter_test is not documented.
+/tmp/workspace/tests/test_cCounter.cpp:18: warning: Member TearDown() override (function) of struct cCounter_test is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:14: warning: Member SetUpTestSuite() (function) of struct cCounter_test2 is not documented.
+/tmp/workspace/tests/test_2_cCounter.cpp:19: warning: Member TearDownTestSuite() (function) of struct cCounter_test2 is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:17: warning: Member SetUp() override (function) of struct cEvaluate_test is not documented.
+/tmp/workspace/tests/test_cEvaluate.cpp:19: warning: Member TearDown() override (function) of struct cEvaluate_test is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:48: warning: Member SetUp() (function) of class GpioUnitTest is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:49: warning: Member TearDown() (function) of class GpioUnitTest is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:52: warning: Member _halGpioMock (variable) of class GpioUnitTest is not documented.
+/tmp/workspace/tests/test_hello_world.cpp:17: warning: Member SetUp() override (function) of struct HelloWorld_test is not documented.
+/tmp/workspace/tests/test_hello_world.cpp:18: warning: Member TearDown() override (function) of struct HelloWorld_test is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:28: warning: Member MOCK_METHOD(void, HAL_GPIO_TogglePin,(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)) (function) of class MockHalGpio is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:29: warning: Member MOCK_METHOD(void, HAL_GPIO_WritePin,(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)) (function) of class MockHalGpio is not documented.
+/tmp/workspace/tests/test_drv_Gpio.cpp:30: warning: Member MOCK_METHOD(GPIO_PinState, HAL_GPIO_ReadPin,(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)) (function) of class MockHalGpio is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:30: warning: Member bInitialised (variable) of struct st_drvgpio_instance_t is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:31: warning: Member pPort (variable) of struct st_drvgpio_instance_t is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:32: warning: Member tPin (variable) of struct st_drvgpio_instance_t is not documented.
+/tmp/workspace/hardware-drivers/drv_Gpio.h:33: warning: Member eInitState (variable) of struct st_drvgpio_instance_t is not documented.
+/tmp/workspace/tests/test_application.cpp:10: warning: Member SetUp() (function) of struct test_Main is not documented.
+/tmp/workspace/tests/test_util_Crc32.cpp:15: warning: Member SetUp() (function) of struct util_Crc32_test is not documented.
+/tmp/workspace/tests/test_util_Crc32.cpp:16: warning: Member TearDown() (function) of struct util_Crc32_test is not documented.
+error: Style sheet 'doxygen-awesome-css/doxygen-awesome.css' specified by HTML_STYLESHEET does not exist!

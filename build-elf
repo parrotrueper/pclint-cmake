@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+# Exit on error
+set -e
+
+# Error handling
+trap 'printf "\n\nERROR at $0 line $LINENO. Exiting.\n\n"' ERR
+
+# grab the location of this script as our reference point
+scriptdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+# directory locations
+#--------------------
+prjdir=$(realpath "${scriptdir}")
+target=""
+is_local=0
+
+# Help function
+#--------------
+# shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
+function usage(){
+   cat <<Endofmessage
+
+    Run headless build of a target
+
+    Use: $0  [-h] [-t <target>]
+
+    optional arguments:
+
+        -h display this help and exit
+
+        -t target name, valid target names are:
+            - blinky
+
+Endofmessage
+}
+
+# parse input arguments
+#----------------------
+function funcParseArgs(){
+    while [[ $# -gt 0 ]]; do
+        arg="$1"
+        case ${arg} in
+            -t) target=$2 ;  shift 2;;
+            -h) usage ; exit 0 ;    ;;
+            -*) usage
+                echo "unknown ${arg}"
+                exit 1
+                ;;
+            *)  usage
+                echo "unknown ${arg}"
+                exit 1
+                ;;
+        esac
+    done
+}
+
+
+function funcNinja(){
+
+    banner_msg=$1
+    cmakelist_dir=$2
+    build_type=$3
+
+    compiler_path="/opt/st/stm32cubeide_1.16.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.linux64_1.0.200.202406132123/tools/bin"
+
+    pushd "${cmakelist_dir}"
+        export PATH=${PATH}:${compiler_path}
+        printf "=================================================================\n"
+        printf "\t%s\n" "${banner_msg}"
+        printf "=================================================================\n"
+
+        if [[ ${is_local} -eq 1 ]]; then rm -rf ./pc-lint-report.txt ; fi
+
+        rm -rf ./build
+        mkdir ./build
+        pushd ./build
+            cmake -G Ninja -DCMAKE_BUILD_TYPE="${build_type}" ../
+            ninja -k 1
+            ninja lint
+        popd
+        # clean up
+        rm -rf ./build
+    popd +0
+
+}
+
+function funcCheckTarget(){
+
+    case "${target}" in
+        ("blinky")
+            msg_to_show="FW - Example - BLINKY_APPLICATION"
+            funcNinja "${msg_to_show}" "${prjdir}/blinky_stm32_project" BLINKY_APPLICATION blinky_application
+            ;;
+        (*) usage ; echo "ERROR, unknown elf ${target}" ; exit 1 ;;
+    esac
+
+}
+
+# script starts here
+#===================
+function main(){
+    funcParseArgs "$@"
+    funcCheckTarget
+}
+
+main "$@"

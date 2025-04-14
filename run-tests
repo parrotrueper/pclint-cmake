@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+# Exit on error
+set -e
+
+# Error handling
+trap 'printf "\n\nERROR at $0 line $LINENO. Exiting.\n\n"' ERR
+
+# grab the location of this script as our reference point
+scriptdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+
+# environment variables for gtest
+export GTEST_COLOR="yes"
+export GTEST_OUTPUT_ON_FAILURE=1
+export GTEST_OUTPUT="json"
+export GTEST_BREAK_ON_FAILURE=69
+
+# directory locations
+#--------------------
+prjdir=$(realpath "${scriptdir}")
+report_dir=$(realpath "${scriptdir}/test-results")
+build_all="yes"
+tst_template=0
+tst_blob=0
+
+
+# Help function
+#--------------
+# shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
+function usage(){
+   cat <<Endofmessage
+
+    Run off target tests
+
+    Use: $0  [-h] [-t <test_code>]
+
+    optional arguments:
+
+        -h display this help and exit
+
+        -t select the test to run, given a test code
+               test codes           description
+
+             template,             runs the template tests
+             blob,                 runs the tests ./tests/
+
+             more than one test can be specified, for example:
+
+             $0 -s template -s common
+
+
+Endofmessage
+}
+
+# parse input arguments
+#----------------------
+function funcParseArgs(){
+    while [[ $# -gt 0 ]]; do
+        arg="$1"
+        case ${arg} in
+            -t) build_all="no"
+                case $2 in
+                    template)
+                     tst_template=1
+                     ;;
+                    blob)
+                     tst_blob=1
+                     ;;
+                     *)
+                usage
+                        echo "unknown ${arg}"
+                        exit 1
+                        ;;
+                        esac
+                        shift 2
+                        ;;
+            -h) usage
+                exit 0
+                ;;
+            -*) usage
+                echo "unknown ${arg}"
+                exit 1
+                ;;
+            *)  usage
+                echo "unknown ${arg}"
+                exit 1
+                ;;
+        esac
+    done
+}
+
+function funcSetSwitches(){
+
+    if [[ "${build_all}" == "yes" ]]; then
+        # disable individual tests here
+        #------------------------------
+        tst_template=1
+        tst_blob=1
+    fi
+}
+
+function funcNinja(){
+    tst_path=$1
+    tst_switch=$2
+    # set the compiler version that cmake should use
+    cc_ver="/usr/bin/gcc-13"
+    cppc_ver="/usr/bin/g++-13"
+
+    if [[ "${build_all}" == "yes" ]]; then
+        tst_switch=1
+    fi
+    if [[ ${tst_switch} -eq 1 ]]; then
+        cd "${tst_path}"
+        printf "=================================================================\n"
+        printf "\t%s\n" "${PWD#'/tmp/workspace/'}"
+        printf "=================================================================\n"
+        rm -rf ./build
+        mkdir ./build
+        pushd ./build
+            make_cmd="cmake -G Ninja -DCMAKE_C_COMPILER=${cc_ver}"
+            make_cmd+=" -DCMAKE_CXX_COMPILER=${cppc_ver}"
+            make_cmd+=" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../"
+            eval "${make_cmd}"
+            ninja
+            ninja lint
+        popd
+        # clean up
+        #rm -rf ./build
+    else
+        if [[ "${build_all}" == "yes" ]]; then
+            printf "\nWARNING: TEST DID NOT RUN [%s]\n" "${tst_path}"
+        fi
+    fi
+}
+
+
+function funcRunOffTgtTests(){
+  funcNinja "${prjdir}/common/template/test" "${tst_template}"
+  funcNinja "${prjdir}/tests" "${tst_blob}"
+}
+
+# script starts here
+#===================
+function main(){
+    funcParseArgs "$@"
+    funcSetSwitches
+    mkdir -p "${report_dir}"
+    funcRunOffTgtTests
+}
+
+main "$@"

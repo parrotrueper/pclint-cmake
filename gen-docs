@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Exit on error
+set -e
+
+# Error handling
+trap 'printf "\n\nERROR at $0 line $LINENO. Exiting.\n\n"' ERR
+
+# grab the location of this script as our reference point
+scriptdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+prjdir=$(realpath "${scriptdir}")
+
+# Sources to document
+#-------------------------
+# common library directory
+common_lib="${prjdir}/common"
+# device driver source code directory
+drivers="${prjdir}/hardware-drivers"
+# source code directory
+proj_sources="${prjdir}/your-app"
+# unit tests directory
+test_src="${prjdir}/tests"
+# all source list
+all_source_dirs="${common_lib} ${drivers} ${proj_sources} ${test_src}"
+
+# Doxyfile location
+doxyfile_dir="${prjdir}/.doxy-cfg"
+doxy_input_dirs="${all_source_dirs} ${prjdir}/README.md"
+DOXY_OUTPUT_DIR="${prjdir}/docs"
+DOXY_PROJ_NAME="Project Template"
+DOXY_PROJ_BRIEF="Project with PC Lint"
+
+if [[ -d "${doxyfile_dir}" ]]; then
+    mkdir -p "${DOXY_OUTPUT_DIR}"
+
+    pushd "${doxyfile_dir}" || exit
+        rm -f doxygen.log
+        DOXYGEN_INPUT="${doxy_input_dirs}" \
+        DOXYGEN_OUT_DIR="${DOXY_OUTPUT_DIR}" \
+        DOXYGEN_PROJNAME="${DOXY_PROJ_NAME}" \
+        DOXYGEN_PROJBRIEF="${DOXY_PROJ_BRIEF}" \
+        doxygen Doxyfile
+    popd || exit
+else
+    printf "ERROR: Doxyfile not found in %s \n" "${DOCS_DOXY_DIR}"
+fi
+

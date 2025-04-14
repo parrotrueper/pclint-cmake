@@ -1,0 +1,36 @@
+docker-data/pclint/pclp
+
+# secrets
+.ssh/
+.bash_history
+
+.gnupg/
+
+.vscode-server/
+.vscode
+
+# STM32 git ignore
+*.mxproject
+
+.cortex-debug
+.cache/
+.dotnet/
+.devcontainer
+.local
+.clang-format
+.gitconfig
+
+blinky_stm32_project/build
+common/template/test/build
+setup-docker
+docker-compose.test.yml
+BLINKY_APPLICATION.html
+dev-scripts
+docker-data
+test-results
+unit_tests
+docs
+reports
+tests/build
+
+
